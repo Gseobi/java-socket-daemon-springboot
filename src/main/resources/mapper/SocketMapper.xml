@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.gseobi.daemon.socket.persistence.mapper.SocketMapper">
+
+    <select id="callSocketRequestProc" statementType="CALLABLE"
+            parameterType="com.github.gseobi.daemon.socket.dto.db.ProcedureRequest">
+        {
+            CALL PROC_FETCH_SOCKET_JOB(
+                #{I_NAS_IP, mode=IN, jdbcType=VARCHAR},
+                #{O_RET_CD, mode=OUT, jdbcType=VARCHAR},
+                #{O_TIMER, mode=OUT, jdbcType=VARCHAR},
+                #{O_SEQ, mode=OUT, jdbcType=VARCHAR},
+                #{O_PROVIDER_CODE, mode=OUT, jdbcType=VARCHAR},
+                #{O_REQ_DATA, mode=OUT, jdbcType=VARCHAR}
+                 )
+            }
+    </select>
+
+    <select id="callSocketResponseProc" statementType="CALLABLE"
+            parameterType="com.github.gseobi.daemon.socket.dto.db.ProcedureResponse">
+        {
+            CALL PROC_SAVE_SOCKET_RESULT(
+                #{I_NAS_IP, mode=IN, jdbcType=VARCHAR},
+                #{I_SEQ, mode=IN, jdbcType=VARCHAR},
+                #{I_RES_CD, mode=IN, jdbcType=VARCHAR},
+                #{I_RES_MSG, mode=IN, jdbcType=VARCHAR},
+                #{O_RET_CD, mode=OUT, jdbcType=VARCHAR},
+                #{O_RET_MSG, mode=OUT, jdbcType=VARCHAR}
+                 )
+            }
+    </select>
+
+</mapper>
