@@ -8,7 +8,7 @@ Spring Boot 기반으로
 운영 환경에서 중요한 **설정 분리, 재시도, 타임아웃, 예외 처리, 암·복호화, 결과 반영 흐름**을  
 Daemon 관점에서 구조화하는 데 초점을 두었습니다.
 
-</br>
+<br/>
 
 ## 1. Overview
 
@@ -19,7 +19,7 @@ DB에 적재된 작업을 Daemon이 Polling하여 처리하고
 주요 관심사는 단순 송수신이 아니라,  
 장기 실행 프로세스에서 필요한 **안정적인 작업 처리 흐름, 설정 분리, 장애 대응, 운영 가능성**입니다.
 
-</br>
+<br/>
 
 ## 2. Problem Background
 
@@ -37,7 +37,7 @@ DB에 적재된 작업을 Daemon이 Polling하여 처리하고
 이 프로젝트는 이러한 문제를 기준으로  
 **Provider 연동형 Socket Daemon을 운영 가능한 구조로 정리하는 것**을 목표로 했습니다.
 
-</br>
+<br/>
 
 ## 3. Key Design Points
 
@@ -65,7 +65,7 @@ DB 작업 조회, Socket 송수신, 암복호화, 결과 반영 책임을 분리
 DB 기반 처리와 테스트/Mock 환경을 분리할 수 있도록  
 Repository 계층을 추상화하여 확장 가능성을 고려했습니다.
 
-</br>
+<br/>
 
 ## 4. Processing Flow
 
@@ -82,16 +82,17 @@ SocketService
 DB (Update Procedure)
 ```
 
-</br>
+<br/>
 
 ## 5. Configuration
 
 보안 및 계약상 이유로 실제 설정 파일은 포함하지 않았습니다.
 
 예시 구조는 아래와 같습니다.
-
+```text
 config/provider/PROVIDER_A.conf
-```code
+```
+```ini
 IP=127.0.0.1
 PORT=9000
 ENC_TYPE=AES/CBC/PKCS5Padding
@@ -102,7 +103,7 @@ ENC_OUT=HEX
 이처럼 Provider별 연결 정보와 암호화 규격을 외부 설정으로 분리하여
 코드 수정 없이 연동 대상을 관리할 수 있도록 설계했습니다.
 
-</br>
+<br/>
 
 ## 6. Tech Stack
 
@@ -116,7 +117,7 @@ ENC_OUT=HEX
 | Configuration | File-based Configuration |
 | Logging       | Logback                  |
 
-</br>
+<br/>
 
 ## 7. Security Considerations
 - 실제 Provider 설정 파일(.conf)은 저장소에 포함하지 않았습니다.
@@ -124,7 +125,7 @@ ENC_OUT=HEX
 - 암호화 Key / IV는 코드에 하드코딩하지 않도록 분리했습니다.
 - 실서비스 연동 정보 및 민감 데이터는 포트폴리오용으로 재구성했습니다.
 
-</br>
+<br/>
 
 ## 8. Extensibility
 
@@ -136,7 +137,7 @@ ENC_OUT=HEX
 - 테스트용 Mock Provider / Local Simulator 추가
 - 배치성 작업과 장기 실행 Daemon의 책임 분리
 
-</br>
+<br/>
 
 ## 9. What This Project Focuses On
 - 장기 실행 Daemon 구조 설계
@@ -146,9 +147,9 @@ ENC_OUT=HEX
 - 재시도 / 타임아웃 / 예외 흐름 설계
 - 운영 가능한 설정 분리와 보안 고려
 
-</br>
+<br/>
 
-## 10. Notes / Blog
+## 10. Blog
 
 ### Blog
 
