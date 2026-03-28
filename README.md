@@ -10,7 +10,7 @@ Daemon 관점에서 구조화하는 데 초점을 두었습니다.
 
 </br>
 
-## Overview
+## 1. Overview
 
 이 프로젝트는 외부 Provider와의 Socket 통신이 필요한 환경에서,  
 DB에 적재된 작업을 Daemon이 Polling하여 처리하고  
@@ -21,7 +21,7 @@ DB에 적재된 작업을 Daemon이 Polling하여 처리하고
 
 </br>
 
-## Problem Background
+## 2. Problem Background
 
 장기 실행 Daemon은 일반적인 요청/응답형 API와 달리  
 프로세스 지속 실행, 외부 시스템 연결, 설정 관리, 장애 복구, 재처리 흐름까지 함께 고려해야 합니다.
@@ -39,35 +39,35 @@ DB에 적재된 작업을 Daemon이 Polling하여 처리하고
 
 </br>
 
-## Key Design Points
+## 3. Key Design Points
 
-### 1. Long-running Daemon Structure
+### 3-1. Long-running Daemon Structure
 DB에서 작업을 주기적으로 Polling하고,  
 외부 Provider와 통신한 뒤 결과를 다시 반영하는 장기 실행 구조를 전제로 설계했습니다.
 
-### 2. Provider-oriented Configuration
+### 3-2. Provider-oriented Configuration
 Provider별 IP, PORT, 암호화 방식, 인코딩 규격 등을  
 파일 기반 설정으로 분리하여 런타임에서 참조할 수 있도록 구성했습니다.
 
-### 3. Encryption / Decryption Flow
+### 3-3. Encryption / Decryption Flow
 실제 연동 환경을 고려하여  
 AES / SHA 기반 암·복호화 처리와 Base64 / HEX 변환 흐름을 반영했습니다.
 
-### 4. Socket Communication Responsibility Separation
+### 3-4. Socket Communication Responsibility Separation
 DB 작업 조회, Socket 송수신, 암복호화, 결과 반영 책임을 분리하여  
 연동 흐름을 추적 가능하게 구성했습니다.
 
-### 5. Retry / Timeout / Exception Handling
+### 3-5. Retry / Timeout / Exception Handling
 운영 환경에서 발생할 수 있는 연결 실패, 응답 지연, 예외 상황을 고려해  
 재시도, 타임아웃, 예외 처리 기준을 구조적으로 반영했습니다.
 
-### 6. Repository Abstraction
+### 3-6. Repository Abstraction
 DB 기반 처리와 테스트/Mock 환경을 분리할 수 있도록  
 Repository 계층을 추상화하여 확장 가능성을 고려했습니다.
 
 </br>
 
-## Processing Flow
+## 4. Processing Flow
 
 ```text
 DB (Stored Procedure)
@@ -84,7 +84,7 @@ DB (Update Procedure)
 
 </br>
 
-## Configuration
+## 5. Configuration
 
 보안 및 계약상 이유로 실제 설정 파일은 포함하지 않았습니다.
 
@@ -104,7 +104,7 @@ ENC_OUT=HEX
 
 </br>
 
-## Tech Stack
+## 6. Tech Stack
 
 | 영역            | 기술                       |
 | ------------- | ------------------------ |
@@ -118,7 +118,7 @@ ENC_OUT=HEX
 
 </br>
 
-## Security Considerations
+## 7. Security Considerations
 - 실제 Provider 설정 파일(.conf)은 저장소에 포함하지 않았습니다.
 - DB 접속 정보는 환경 변수 기반 주입을 전제로 구성했습니다.
 - 암호화 Key / IV는 코드에 하드코딩하지 않도록 분리했습니다.
@@ -126,7 +126,7 @@ ENC_OUT=HEX
 
 </br>
 
-## Extensibility
+## 8. Extensibility
 
 이 프로젝트는 향후 아래 방향으로 확장할 수 있도록 고려했습니다.
 
@@ -138,10 +138,20 @@ ENC_OUT=HEX
 
 </br>
 
-## What This Project Focuses On
+## 9. What This Project Focuses On
 - 장기 실행 Daemon 구조 설계
 - 외부 Provider Socket 연동 흐름 분리
 - 암·복호화 처리와 통신 책임 분리
 - Polling 기반 작업 처리와 결과 반영 구조
 - 재시도 / 타임아웃 / 예외 흐름 설계
 - 운영 가능한 설정 분리와 보안 고려
+
+## 10. Notes / Blog
+
+### Blog
+
+이 프로젝트의 설계 배경과 운영 관점의 고민은 아래 글에 정리했습니다.
+
+[장기 실행 Socket Daemon을 운영 가능한 구조로 만들기 위해 고려한 것들](https://velog.io/@wsx2386/%EC%9E%A5%EA%B8%B0-%EC%8B%A4%ED%96%89-Socket-Daemon%EC%9D%84-%EC%9A%B4%EC%98%81-%EA%B0%80%EB%8A%A5%ED%95%9C-%EA%B5%AC%EC%A1%B0%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%9C%84%ED%95%B4-%EA%B3%A0%EB%A0%A4%ED%95%9C-%EA%B2%83%EB%93%A4)
+
+Keywords: `Long-Running Process`, `Socket Daemon`, `Timeout`, `Retry`, `Async Processing`, `Config Management`
