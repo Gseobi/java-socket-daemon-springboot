@@ -20,19 +20,21 @@ Daemon 관점에서 구조화하는 데 초점을 두었습니다.
 
 ## 2. Execution Evidence
 
-### Main Flow
+### Daemon Processing Pipeline
 
-```mermaid
-flowchart TD
-    A[Job Polling] --> B[JobRepository]
-    B --> C[SocketService]
-    C --> D[Encrypt]
-    D --> E[Socket Connect / Send]
-    E --> F[Receive Response]
-    F --> G[Decrypt]
-    G --> H[Result Mapping]
-    H --> I[DB Update]
-```
+<div align="center">
+  <img src="docs/images/socket-daemon-pipeline.png" alt="Socket Daemon Pipeline" width="960" />
+</div>
+
+<div align="center">
+  <sub>
+    Source:
+    <a href="docs/diagram/socket-daemon-pipeline.drawio">draw.io</a> ·
+    <a href="docs/pdf/socket-daemon-pipeline.pdf">PDF</a>
+  </sub>
+</div>
+
+<br/>
 
 ### Example Execution Log
 

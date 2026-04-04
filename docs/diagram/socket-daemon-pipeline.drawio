@@ -1,0 +1,62 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="deferred-deeplink-backend" name="deferred-deeplink-backend">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1800" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-17" parent="1" style="whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#000000;fontSize=15;align=center;verticalAlign=middle;rounded=1;arcSize=12;" value="java-socket-daemon-springboot&lt;br&gt;[Polling → Encrypt → Socket → Decrypt → Update]" vertex="1">
+          <mxGeometry height="50" width="680" x="30.000909090909033" y="19.995454545454493" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-18" parent="1" style="whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=15;align=center;verticalAlign=middle;rounded=1;arcSize=12;" value="DB / Job Queue" vertex="1">
+          <mxGeometry height="80" width="170" x="40.00090909090903" y="139.9954545454545" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-19" parent="1" style="whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=15;align=center;verticalAlign=middle;rounded=1;arcSize=12;" value="JobRepository" vertex="1">
+          <mxGeometry height="80" width="180" x="260.00090909090903" y="139.9954545454545" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-20" parent="1" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#000000;fontSize=15;align=center;verticalAlign=middle;rounded=1;arcSize=12;" value="Encryption" vertex="1">
+          <mxGeometry height="80" width="170" x="500.0009090909091" y="139.9954545454545" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-21" parent="1" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontSize=15;align=center;verticalAlign=middle;rounded=1;arcSize=12;" value="SocketService" vertex="1">
+          <mxGeometry height="80" width="190" x="730.0009090909091" y="139.9954545454545" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-22" parent="1" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#000000;fontSize=15;align=center;verticalAlign=middle;rounded=1;arcSize=12;" value="Decryption" vertex="1">
+          <mxGeometry height="80" width="170" x="980.0009090909091" y="139.9954545454545" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-23" parent="1" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#000000;fontSize=15;align=center;verticalAlign=middle;rounded=1;arcSize=12;" value="Result Update" vertex="1">
+          <mxGeometry height="80" width="190" x="890.0009090909091" y="309.9954545454545" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-24" parent="1" style="whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#000000;fontSize=15;align=center;verticalAlign=middle;rounded=1;arcSize=12;" value="Provider Config&lt;br&gt;(IP / PORT / ENC...)" vertex="1">
+          <mxGeometry height="90" width="170" x="380.0009090909091" y="289.9954545454545" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-25" parent="1" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#000000;fontSize=15;align=center;verticalAlign=middle;rounded=1;arcSize=12;" value="Retry / Timeout" vertex="1">
+          <mxGeometry height="90" width="190" x="630.0009090909091" y="299.9954545454545" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-26" edge="1" parent="1" source="jUP8Jp19QW3cPweJs2o7-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=15;" target="jUP8Jp19QW3cPweJs2o7-19" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-27" edge="1" parent="1" source="jUP8Jp19QW3cPweJs2o7-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=15;" target="jUP8Jp19QW3cPweJs2o7-20" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-28" edge="1" parent="1" source="jUP8Jp19QW3cPweJs2o7-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=15;" target="jUP8Jp19QW3cPweJs2o7-21" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-29" edge="1" parent="1" source="jUP8Jp19QW3cPweJs2o7-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=15;" target="jUP8Jp19QW3cPweJs2o7-22" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-30" edge="1" parent="1" source="jUP8Jp19QW3cPweJs2o7-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=15;" target="jUP8Jp19QW3cPweJs2o7-23" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-31" edge="1" parent="1" source="jUP8Jp19QW3cPweJs2o7-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=15;" target="jUP8Jp19QW3cPweJs2o7-20" value="Load">
+          <mxGeometry relative="1" x="0.0526" y="-15" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jUP8Jp19QW3cPweJs2o7-32" edge="1" parent="1" source="jUP8Jp19QW3cPweJs2o7-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=15;" target="jUP8Jp19QW3cPweJs2o7-21" value="Guard">
+          <mxGeometry relative="1" x="0.0555" y="-10" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
